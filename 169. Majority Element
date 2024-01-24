@@ -1,0 +1,25 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        
+        HashMap<Integer,Integer> sortedMap = new HashMap<Integer,Integer>();
+        int n = nums.length;
+
+        // Counting and Adding to HashMap
+        for (int i = 0; i < n; i++) {
+            if (sortedMap.containsKey(nums[i])) {
+                sortedMap.put(nums[i], sortedMap.get(nums[i]) + 1);
+            } else {
+                sortedMap.put(nums[i],1);
+            }
+        }
+
+        // Searching for the majority element in Hashmap
+        for(int key: sortedMap.keySet()) {
+            if(sortedMap.get(key) > n/2)
+            return key;
+        }
+
+    
+        return -1;
+    }
+}
