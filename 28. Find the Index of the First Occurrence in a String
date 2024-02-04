@@ -1,0 +1,29 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        
+        String[] arrHayStack = haystack.split("");
+        int haystack_length = haystack.length();
+        int needle_length = needle.length();
+
+    
+        int i;    
+        String str = "";
+
+
+        for (i = 0; i <= haystack_length - needle_length; i++) {
+
+            int j = 0;
+            while (j < needle_length) {
+                str += arrHayStack[i+j];
+                j++;
+            }
+
+            if (str.equals(needle)) {
+                return i;    
+            } else { 
+                str = "";
+            }
+        }
+        return -1;
+    }
+}
