@@ -1,0 +1,39 @@
+class Solution {
+
+    public boolean isHappy(int n) {
+        HashSet<Integer> seen = new HashSet<>();
+
+        int result = n;
+
+        while (result != 1 && !seen.contains(result)) {
+            seen.add(result);
+            int[] intArr = splitIntegerToDigits(result);
+            result = 0;
+
+            for (int digit : intArr){
+                result += digit * digit;
+            }
+        }
+        
+        return result == 1;
+    } 
+
+    public int[] splitIntegerToDigits(int result) {
+
+        // Interger -> String
+        String str = Integer.toString(result);
+
+        // String -> Char Array
+        char[] charArr = str.toCharArray();
+
+        // Char Arrary -> Digits
+        int[] digits = new int[charArr.length];
+
+        for (int i = 0; i < charArr.length; i++) {
+            digits[i] = Character.getNumericValue(charArr[i]); 
+        }
+        
+        return digits;
+    }
+}
+
