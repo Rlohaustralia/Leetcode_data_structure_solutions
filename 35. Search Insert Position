@@ -1,0 +1,17 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        
+        int left_index = 0;
+        int right_index = nums.length - 1;
+
+        while (left_index <= right_index) {
+            int pivot = (left_index + right_index) / 2;
+
+            if (target == nums[pivot]) return pivot;
+            else if (nums[pivot] > target) right_index = pivot - 1;
+            else left_index = pivot + 1;
+        }
+
+        return left_index;    
+    }
+}
