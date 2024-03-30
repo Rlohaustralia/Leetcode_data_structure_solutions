@@ -1,0 +1,42 @@
+class Solution {
+    public int romanToInt(String s) {
+
+        char[] chars = s.toCharArray();
+        int num = 0;
+
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == 'I') {
+                num += 1;
+            } else if (chars[i] == 'V') {
+                num += 5;
+            } else if (chars[i] == 'X') {
+                num += 10;
+            } else if (chars[i] == 'L') {
+                num += 50;
+            } else if (chars[i] == 'C') {
+                num +=100; 
+            } else if (chars[i] == 'D') {
+                num += 500;
+            } else if (chars[i] == 'M') {
+                num += 1000;
+            }
+        }
+
+
+        for (int i = 1; i < chars.length; i++) {
+       
+            String exception = String.valueOf(chars[i-1])
+            + String.valueOf(chars[i]);
+            if (exception.equals("IV") || exception.equals("IX")) {
+                num -= 2;
+            } else if (exception.equals("XL") || exception.equals("XC")) {
+                num -= 20; 
+            } else if (exception.equals("CD") || exception.equals("CM")) {
+                num -= 200; 
+            }
+        }
+
+        return num;
+        
+    }
+}
