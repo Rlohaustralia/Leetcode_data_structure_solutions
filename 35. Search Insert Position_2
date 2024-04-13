@@ -1,0 +1,25 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+
+        int start_index = 0;
+        int end_index = nums.length - 1;
+        
+        while (start_index <= end_index) {
+
+            int pivot_index = (start_index + end_index) / 2;
+
+            if (nums[pivot_index] > target) {
+                end_index = pivot_index - 1;
+            }
+        
+            if (nums[pivot_index] < target) {
+                start_index = pivot_index + 1;
+            }
+
+            if (nums[pivot_index] == target) {
+                return pivot_index;
+            }
+        }
+        return start_index;
+    }
+}
