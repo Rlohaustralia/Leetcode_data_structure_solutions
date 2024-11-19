@@ -1,0 +1,27 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+
+        StringBuilder prefix = new StringBuilder();
+
+        // Find the minimum string length in the strs array 
+        int minLen = Integer.MAX_VALUE;
+        for (String str : strs) {
+            minLen = Math.min(minLen, str.length());
+        }
+
+        for (int i = 0; i < minLen; i++) {
+            char chr = strs[0].charAt(i);
+            for (int j = 1; j < strs.length; j++) {
+                if (strs[j].charAt(i) != chr) {
+                    return prefix.toString();
+                }
+            }
+
+            prefix.append(chr);
+        }
+
+        return prefix.toString();
+        
+        
+    }
+}
