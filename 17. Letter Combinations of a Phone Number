@@ -1,0 +1,31 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+
+        if (digits.isEmpty()) return new ArrayList<>();
+
+        Map <Character, String> map = Map.of (
+            '2', "abc", '3', "def", '4', "ghi",
+            '5', "jkl", '6', "mno", '7', "pqrs",
+            '8', "tuv", '9', "wxyz"
+        );
+
+        Queue<String> queue = new LinkedList<>();
+        queue.add("");
+
+        for (char digit : digits.toCharArray()) {
+            int size = queue.size();
+            String letters = map.get(digit);
+
+            for (int i = 0; i < size; i++) {
+                String prefix = queue.poll();
+
+                for (char letter : letters.toCharArray()) {
+                    queue.add(prefix + letter);
+                }
+            }
+        }
+
+        return new ArrayList<>(queue);
+
+    }
+}
